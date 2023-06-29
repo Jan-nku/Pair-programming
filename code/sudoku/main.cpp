@@ -113,8 +113,8 @@ int main(int argc, char* argv[]) {
 	if (opt_range) {
 		Assert(opt_number, "opt-r 需要opt-n");
 		Assert(min_hole_num <= max_hole_num, "挖空数量上下界错误");
-		Assert(MIN_HOLE >= min_hole_num, "挖空数量下界小于最小值");
-		Assert(MAX_HOLE <= max_hole_num, "挖空数量下界大于最大值");
+		Assert(MIN_HOLE <= min_hole_num, "挖空数量下界小于最小值");
+		Assert(MAX_HOLE >= max_hole_num, "挖空数量下界大于最大值");
 	}
 	if (opt_unique) {
 		Assert(opt_number, "opt-u 需要opt-n");
