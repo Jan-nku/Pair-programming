@@ -35,3 +35,11 @@ Pair programming assignment for software engineering course of Nankai University
 1. 项目源代码（包含测试样例）的GitHub链接
 2. 可执行文件
 3. 简易用户手册、质量分析截图和测试覆盖率截图
+
+
+
+## 代码质量分析
+
+在`vs2019`中使用`cppcheck`进行代码质量分析，未找到相关问题，分析结果显示一些类成员`never used`，但实际上这些类成员都有用到，因此可忽略。除此以外，代码没有其他警告。
+
+![image-20230630001852490](README/image-20230630001852490.png)
