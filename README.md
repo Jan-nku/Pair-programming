@@ -43,3 +43,11 @@ Pair programming assignment for software engineering course of Nankai University
 在`vs2019`中使用`cppcheck`进行代码质量分析，未找到相关问题，分析结果显示一些类成员`never used`，但实际上这些类成员都有用到，因此可忽略。除此以外，代码没有其他警告。
 
 ![](img/image-20230630001852490.png)
+
+
+## 测试样例
+以test.bat脚本形式给出。在该脚本中，多次传入参数，并调用sudoku.exe，检查程序对于传入参数的处理以及合法性检查是否完善，验证程序的健壮性。总共执行了20条命令，对每一个参数均进行了检查，并将结果写入在output.txt中。
+
+
+## 覆盖率
+在`vs2019`中使用`OpenCppCoverage`插件进行覆盖率的测试。主要测试了6种合法传参、4种非法传参下程序的代码覆盖率，具体的覆盖率情况在img/文件夹下给出，图片名称即为执行的命令。

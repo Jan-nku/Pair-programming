@@ -1,0 +1,64 @@
+"test arg -c,value:10,0,1000001" 
+"[Command 1] sudoku.exe -c 10" 
+ 
+"[Command 2] sudoku.exe -c 0" 
+游戏终局数量需要 > 0 !
+ 
+"[Command 3] sudoku.exe -c 1000001 completed." 
+游戏终局数量需要 < 1000000 !
+ 
+ 
+"test arg -n, value:10,0,10001" 
+"[Command 4] sudoku.exe -n 10" 
+ 
+"[Command 5] sudoku.exe -n 0" 
+游戏数量需要 > 0
+ 
+"[Command 6] sudoku.exe -c 10001 completed." 
+游戏数量需要 < 10000
+ 
+ 
+"test arg -m, value:no arg -n,0,1,4" 
+"[Command 7] sudoku.exe -m 1 " 
+opt-m 需要opt-n
+ 
+"[Command 8] sudoku.exe -n 10 -m 0" 
+游戏等级取值为 1,2,3 !
+ 
+"[Command 9] sudoku.exe -n 10 -m 1" 
+ 
+"[Command 10] sudoku.exe -n 10 -m 4" 
+游戏等级取值为 1,2,3 !
+ 
+ 
+"test arg -r, value:no arg -n,-1~30,20~40,30~61,40~30" 
+"[Command 11] sudoku.exe -r 30~40" 
+opt-r 需要opt-n
+ 
+"[Command 12] sudoku.exe -n 10 -r -1~30" 
+挖空数量上下界错误
+ 
+"[Command 13] sudoku.exe -n 10 -r 20~40" 
+ 
+"[Command 14] sudoku.exe -n 10 -r 30~61" 
+挖空数量上界大于最大值
+ 
+"[Command 15] sudoku.exe -n 10 -r 40~30" 
+挖空数量上下界错误
+ 
+ 
+"test arg -u, value:no arg -n" 
+"[Command 16] sudoku.exe -u" 
+opt-u 需要opt-n
+ 
+"[Command 17] sudoku.exe -n 10 -u" 
+ 
+ 
+"test arg -s, value:path error,relative path,absolute path" 
+"[Command 18] sudoku.exe -s "./error/game_1" " 
+Failed to open input file: ./error/game_1
+ 
+"[Command 19] sudoku.exe -s "./games/game_1.txt"" 
+求解答案写入成功！ 
+"[Command 20] sudoku.exe -s "D:\2023_Spring\sudoku/Debug/games/game_1.txt"" 
+求解答案写入成功！ 
