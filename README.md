@@ -42,4 +42,4 @@ Pair programming assignment for software engineering course of Nankai University
 
 在`vs2019`中使用`cppcheck`进行代码质量分析，未找到相关问题，分析结果显示一些类成员`never used`，但实际上这些类成员都有用到，因此可忽略。除此以外，代码没有其他警告。
 
-![image-20230630001852490](README/image-20230630001852490.png)
+![](img/image-20230630001852490.png)
