@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<ctime>
 #include<string>
 #include <fstream>
@@ -12,33 +12,34 @@
 #define u_int unsigned int
 
 //part1:TODO
-/*ÉèÖÃÈ«¾Ö±äÁ¿´æ´¢sudoku²ÎÊı*/
+/*è®¾ç½®å…¨å±€å˜é‡å­˜å‚¨sudokuå‚æ•°*/
 
-//-cĞèÒªµÄÊı¶ÀÖÕÅÌÊıÁ¿
+//-céœ€è¦çš„æ•°ç‹¬ç»ˆç›˜æ•°é‡
 bool opt_gen_final = false;
-int final_num = 0;//ÏŞÖÆ·¶Î§ÔÚ1-1000000
+int final_num = 0;//é™åˆ¶èŒƒå›´åœ¨1-1000000
 
-//-sĞèÒª½âµÄÊı¶ÀÆåÅÌÎÄ¼şÂ·¾¶
+//-séœ€è¦è§£çš„æ•°ç‹¬æ£‹ç›˜æ–‡ä»¶è·¯å¾„
 bool opt_solve = false;
 char solve_file_path[256] = "";
 
-//-nĞèÒªµÄÓÎÏ·ÊıÁ¿
+//-néœ€è¦çš„æ¸¸æˆæ•°é‡
 bool opt_number = false;
-int game_num = 0;//ÏŞÖÆÔÚ1-10000
+int game_num = 0;//é™åˆ¶åœ¨1-10000
 
-//-mÉú³ÉÓÎÏ·µÄÄÑ¶È<->ÍÚ¿ÕÊıÁ¿,ĞèÒªºÍ-nÒ»Í¬Ê¹ÓÃ
+//-mç”Ÿæˆæ¸¸æˆçš„éš¾åº¦<->æŒ–ç©ºæ•°é‡,éœ€è¦å’Œ-nä¸€åŒä½¿ç”¨
 bool opt_level = false;
 int game_level = 0;
 
-//-rÉú³ÉÓÎÏ·ÖĞÍÚ¿ÕµÄÊıÁ¿·¶Î§£¬ĞèÒªºÍ-nÒ»Í¬Ê¹ÓÃ
+//-rç”Ÿæˆæ¸¸æˆä¸­æŒ–ç©ºçš„æ•°é‡èŒƒå›´ï¼Œéœ€è¦å’Œ-nä¸€åŒä½¿ç”¨
 bool opt_range = false;
 u_int min_hole_num = MIN_HOLE;
 u_int max_hole_num = MAX_HOLE;
 
-//-uÉú³ÉÎ¨Ò»½â£¬ĞèÒªºÍ-nÒ»Í¬Ê¹ÓÃ
+//-uç”Ÿæˆå”¯ä¸€è§£ï¼Œéœ€è¦å’Œ-nä¸€åŒä½¿ç”¨
 bool opt_unique = false;
 
-void Assert(bool cond, std::string error = "") {
+//Define an assert function, which is directly defined in the main function for convenience
+void Assert(bool cond, const std::string& error = "") {
 	if (!cond) {
 		std::cout << error << std::endl;
 		exit(EXIT_FAILURE);
@@ -48,9 +49,9 @@ void Assert(bool cond, std::string error = "") {
 int main(int argc, char* argv[]) {
 	srand(time(nullptr));
 	//part2:TODO
-	/*option parser½èÓÃgetopt¿â£¬½«½âÎöºóµÄ²ÎÊı´æ´¢µ½±äÁ¿ÖĞ*/
-	int opt;//optionÑ¡Ïî
-	char opt_arg[256];//´æ´¢²ÎÊı
+	/*option parserå€Ÿç”¨getoptåº“ï¼Œå°†è§£æåçš„å‚æ•°å­˜å‚¨åˆ°å˜é‡ä¸­*/
+	int opt;//optioné€‰é¡¹
+	char opt_arg[256];//å­˜å‚¨å‚æ•°
 	char args[] = "c:s:n:m:r:u";
 	while ((opt = getopt(argc, argv, args)) != -1) {
 		switch (opt) {
@@ -98,28 +99,28 @@ int main(int argc, char* argv[]) {
 	//part3:TODO
 	/*check args*/
 	if (opt_gen_final) {
-		Assert(final_num > 0, "ÓÎÏ·ÖÕ¾ÖÊıÁ¿ĞèÒª > 0 !");
-		Assert(final_num <= 1000000, "ÓÎÏ·ÖÕ¾ÖÊıÁ¿ĞèÒª < 1000000 !");
+		Assert(final_num > 0, "æ¸¸æˆç»ˆå±€æ•°é‡éœ€è¦ > 0 !");
+		Assert(final_num <= 1000000, "æ¸¸æˆç»ˆå±€æ•°é‡éœ€è¦ < 1000000 !");
 	}
 	if (opt_number) {
-		Assert(game_num > 0, "ÓÎÏ·ÊıÁ¿ĞèÒª > 0");
-		Assert(game_num <= 10000, "ÓÎÏ·ÊıÁ¿ĞèÒª < 10000");
+		Assert(game_num > 0, "æ¸¸æˆæ•°é‡éœ€è¦ > 0");
+		Assert(game_num <= 10000, "æ¸¸æˆæ•°é‡éœ€è¦ < 10000");
 	}
 	if (opt_level) {
-		Assert(opt_number, "opt-m ĞèÒªopt-n");
-		Assert((game_level == 1 || game_level == 2 || game_level == 3), "ÓÎÏ·µÈ¼¶È¡ÖµÎª 1,2,3 !");
+		Assert(opt_number, "opt-m éœ€è¦opt-n");
+		Assert((game_level == 1 || game_level == 2 || game_level == 3), "æ¸¸æˆç­‰çº§å–å€¼ä¸º 1,2,3 !");
 	}
 	if (opt_range) {
-		Assert(opt_number, "opt-r ĞèÒªopt-n");
-		Assert(min_hole_num <= max_hole_num, "ÍÚ¿ÕÊıÁ¿ÉÏÏÂ½ç´íÎó");
-		Assert(MIN_HOLE <= min_hole_num, "ÍÚ¿ÕÊıÁ¿ÏÂ½çĞ¡ÓÚ×îĞ¡Öµ");
-		Assert(MAX_HOLE >= max_hole_num, "ÍÚ¿ÕÊıÁ¿ÏÂ½ç´óÓÚ×î´óÖµ");
+		Assert(opt_number, "opt-r éœ€è¦opt-n");
+		Assert(min_hole_num <= max_hole_num, "æŒ–ç©ºæ•°é‡ä¸Šä¸‹ç•Œé”™è¯¯");
+		Assert(MIN_HOLE <= min_hole_num, "æŒ–ç©ºæ•°é‡ä¸‹ç•Œå°äºæœ€å°å€¼");
+		Assert(MAX_HOLE >= max_hole_num, "æŒ–ç©ºæ•°é‡ä¸‹ç•Œå¤§äºæœ€å¤§å€¼");
 	}
 	if (opt_unique) {
-		Assert(opt_number, "opt-u ĞèÒªopt-n");
+		Assert(opt_number, "opt-u éœ€è¦opt-n");
 	}
 
-	//part4£ºTODO
+	//part4ï¼šTODO
 	/*Execute commands based on the parameters*/
 	//define interface to complete
 	if (opt_gen_final) {
@@ -137,7 +138,8 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	if (opt_solve) {
-		solveSudokuFile(solve_file_path);
+		SudokuSolve sudokuSolve;
+		sudokuSolve.solveSudokuFile(solve_file_path);
 	}
 	if (opt_number) {
 		if (_access("./games", 0) == -1)
